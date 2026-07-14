@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onBeforeUnmount } from 'vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import PageHero from '@/components/sections/PageHero.vue'
 import PortfolioCard from '@/components/ui/PortfolioCard.vue'
@@ -27,6 +27,22 @@ function openProject(project: PortfolioProject) {
 function closeProject() {
   selectedProject.value = null
 }
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') closeProject()
+}
+
+watch(selectedProject, (project) => {
+  if (project) {
+    document.addEventListener('keydown', onKeydown)
+  } else {
+    document.removeEventListener('keydown', onKeydown)
+  }
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', onKeydown)
+})
 </script>
 
 <template>
@@ -85,11 +101,11 @@ function closeProject() {
       class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
       @click.self="closeProject"
     >
-      <div class="relative max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div class="relative max-w-lg overflow-hidden rounded-2xl bg-surface shadow-2xl">
         <button
           type="button"
           aria-label="Cerrar"
-          class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-brand-black shadow"
+          class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-text-primary shadow-card"
           @click="closeProject"
         >
           <XMarkIcon class="h-5 w-5" />
@@ -99,7 +115,7 @@ function closeProject() {
           <span class="mb-2 inline-block rounded-full bg-brand-red/10 px-3 py-1 text-xs font-semibold text-brand-red">
             {{ selectedProject.category }}
           </span>
-          <h3 class="mb-2 text-xl font-bold text-brand-black">{{ selectedProject.title }}</h3>
+          <h3 class="mb-2 text-xl font-bold text-text-primary">{{ selectedProject.title }}</h3>
           <p class="text-sm leading-relaxed text-brand-gray-dark">{{ selectedProject.description }}</p>
         </div>
       </div>

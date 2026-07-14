@@ -12,10 +12,10 @@ import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
     />
     <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
       <div v-reveal>
-        <span class="mb-4 inline-block rounded-full bg-white px-4 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red shadow-sm">
+        <span class="mb-4 inline-block rounded-full bg-surface px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-card">
           Guatemala
         </span>
-        <h1 class="text-4xl font-extrabold leading-tight text-brand-black md:text-5xl">
+        <h1 class="text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">
           Marketing, software y soluciones digitales para hacer crecer tu negocio en Guatemala
         </h1>
         <p class="mt-6 text-lg leading-relaxed text-brand-gray-dark">

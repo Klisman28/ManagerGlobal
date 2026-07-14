@@ -65,58 +65,58 @@ async function handleSubmit() {
       <div class="grid gap-12 lg:grid-cols-3">
         <form
           v-if="!submitted"
-          class="space-y-5 rounded-2xl border border-brand-gray-light bg-white p-8 shadow-sm lg:col-span-2"
+          class="space-y-5 rounded-2xl border border-border bg-surface p-8 shadow-card lg:col-span-2"
           @submit.prevent="handleSubmit"
         >
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="fullName" class="mb-2 block text-sm font-semibold text-brand-black">Nombre completo</label>
+              <label for="fullName" class="mb-2 block text-sm font-semibold text-text-primary">Nombre completo</label>
               <input
                 id="fullName"
                 v-model="form.fullName"
                 type="text"
                 required
-                class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label for="businessName" class="mb-2 block text-sm font-semibold text-brand-black">Nombre del negocio</label>
+              <label for="businessName" class="mb-2 block text-sm font-semibold text-text-primary">Nombre del negocio</label>
               <input
                 id="businessName"
                 v-model="form.businessName"
                 type="text"
-                class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label for="phone" class="mb-2 block text-sm font-semibold text-brand-black">Teléfono</label>
+              <label for="phone" class="mb-2 block text-sm font-semibold text-text-primary">Teléfono</label>
               <input
                 id="phone"
                 v-model="form.phone"
                 type="tel"
                 required
-                class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div>
-              <label for="email" class="mb-2 block text-sm font-semibold text-brand-black">Correo electrónico</label>
+              <label for="email" class="mb-2 block text-sm font-semibold text-text-primary">Correo electrónico</label>
               <input
                 id="email"
                 v-model="form.email"
                 type="email"
                 required
-                class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
           </div>
 
           <div>
-            <label for="service" class="mb-2 block text-sm font-semibold text-brand-black">Servicio de interés</label>
+            <label for="service" class="mb-2 block text-sm font-semibold text-text-primary">Servicio de interés</label>
             <select
               id="service"
               v-model="form.service"
               required
-              class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+              class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             >
               <option value="" disabled>Selecciona un servicio</option>
               <option v-for="option in serviceOptions" :key="option" :value="option">{{ option }}</option>
@@ -124,13 +124,13 @@ async function handleSubmit() {
           </div>
 
           <div>
-            <label for="message" class="mb-2 block text-sm font-semibold text-brand-black">Mensaje</label>
+            <label for="message" class="mb-2 block text-sm font-semibold text-text-primary">Mensaje</label>
             <textarea
               id="message"
               v-model="form.message"
               rows="5"
               required
-              class="w-full rounded-xl border border-brand-gray-light px-4 py-3 text-sm focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20"
+              class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
 
@@ -141,9 +141,9 @@ async function handleSubmit() {
 
         <div
           v-else
-          class="flex flex-col items-start justify-center rounded-2xl border border-brand-gray-light bg-white p-8 shadow-sm lg:col-span-2"
+          class="flex flex-col items-start justify-center rounded-2xl border border-border bg-surface p-8 shadow-card lg:col-span-2"
         >
-          <h3 class="mb-2 text-2xl font-bold text-brand-black">¡Gracias por escribirnos!</h3>
+          <h3 class="mb-2 text-2xl font-bold text-text-primary">¡Gracias por escribirnos!</h3>
           <p class="text-brand-gray-dark">
             Hemos recibido tu solicitud. Nuestro equipo se pondrá en contacto contigo muy pronto.
           </p>
@@ -159,8 +159,8 @@ async function handleSubmit() {
             Hablar por WhatsApp
           </a>
 
-          <div class="rounded-2xl border border-brand-gray-light bg-white p-6 shadow-sm">
-            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-black">Síguenos</h3>
+          <div class="rounded-2xl border border-border bg-surface p-6 shadow-card">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-primary">Síguenos</h3>
             <ul class="space-y-3 text-sm text-brand-gray-dark">
               <li>
                 <a href="#" target="_blank" rel="noopener" class="hover:text-brand-red">Facebook</a>
@@ -174,8 +174,8 @@ async function handleSubmit() {
             </ul>
           </div>
 
-          <div class="rounded-2xl border border-brand-gray-light bg-white p-6 shadow-sm">
-            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-black">Información</h3>
+          <div class="rounded-2xl border border-border bg-surface p-6 shadow-card">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-primary">Información</h3>
             <ul class="space-y-2 text-sm text-brand-gray-dark">
               <li>📞 +502 1234-5678</li>
               <li>✉️ contacto@managerglobalmarketing.com</li>

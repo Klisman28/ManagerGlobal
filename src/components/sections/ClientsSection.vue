@@ -14,10 +14,10 @@ import { clientTypes } from '@/data/services'
         v-for="client in clientTypes"
         :key="client.label"
         v-reveal
-        class="flex flex-col items-center gap-3 rounded-2xl border border-brand-gray-light bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+        class="flex flex-col items-center gap-3 rounded-2xl border border-border bg-surface p-6 text-center shadow-card transition hover:-translate-y-1 hover:shadow-lg"
       >
         <span class="text-3xl" aria-hidden="true">{{ client.emoji }}</span>
-        <span class="text-sm font-semibold text-brand-black">{{ client.label }}</span>
+        <span class="text-sm font-semibold text-text-primary">{{ client.label }}</span>
       </div>
     </div>
   </section>

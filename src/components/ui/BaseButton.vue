@@ -18,7 +18,7 @@ const props = withDefaults(
 )
 
 const baseClasses =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red'
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0'
 
 const sizeClasses = computed(() => {
   switch (props.size) {
@@ -34,11 +34,11 @@ const sizeClasses = computed(() => {
 const variantClasses = computed(() => {
   switch (props.variant) {
     case 'secondary':
-      return 'bg-brand-black text-white hover:bg-brand-gray-dark'
+      return 'bg-brand-black text-white hover:bg-text-secondary'
     case 'outline':
-      return 'border-2 border-brand-black text-brand-black hover:bg-brand-black hover:text-white'
+      return 'border-2 border-text-primary text-text-primary hover:bg-text-primary hover:text-background'
     default:
-      return 'bg-brand-red text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:shadow-red-500/40 hover:-translate-y-0.5'
+      return 'bg-primary text-white shadow-lg shadow-red-500/30 hover:bg-primary-hover hover:shadow-red-500/40 hover:-translate-y-0.5'
   }
 })
 

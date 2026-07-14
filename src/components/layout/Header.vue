@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onBeforeUnmount, watch } from 'vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
+import { useTheme } from '@/composables/useTheme'
 import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
 
 const isOpen = ref(false)
+const { theme } = useTheme()
+const logoSrc = computed(() => (theme.value === 'dark' ? '/logo-dark.svg' : '/logo.svg'))
 
 const navLinks = [
   { label: 'Inicio', to: '/' },
@@ -19,14 +23,33 @@ const navLinks = [
 function closeMenu() {
   isOpen.value = false
 }
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') closeMenu()
+}
+
+watch(isOpen, (open) => {
+  if (open) {
+    document.addEventListener('keydown', onKeydown)
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.removeEventListener('keydown', onKeydown)
+    document.body.style.overflow = ''
+  }
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-brand-gray-light bg-white/95 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
       <router-link to="/" class="flex items-center" @click="closeMenu">
         <img
-          src="/logo.svg"
+          :src="logoSrc"
           alt="Manager Global Marketing"
           class="h-10 w-auto object-contain md:h-12"
         />
@@ -37,29 +60,50 @@ function closeMenu() {
           v-for="link in navLinks"
           :key="link.to"
           :to="link.to"
-          class="text-sm font-medium text-brand-gray-dark transition-colors hover:text-brand-red"
-          active-class="text-brand-red"
+          class="text-sm font-medium text-text-secondary transition-colors hover:text-primary"
+          active-class="text-primary"
         >
           {{ link.label }}
         </router-link>
       </nav>
 
-      <div class="hidden lg:block">
+      <div class="hidden items-center gap-2 lg:flex">
+        <ThemeToggle />
         <BaseButton as="a" :href="buildWhatsappLink(WHATSAPP_MESSAGES.general)" target="_blank" size="sm">
           Cotizar por WhatsApp
         </BaseButton>
       </div>
 
-      <button
-        type="button"
-        class="flex h-10 w-10 items-center justify-center rounded-lg text-brand-black lg:hidden"
-        aria-label="Abrir menú"
-        @click="isOpen = !isOpen"
-      >
-        <Bars3Icon v-if="!isOpen" class="h-7 w-7" />
-        <XMarkIcon v-else class="h-7 w-7" />
-      </button>
+      <div class="flex items-center gap-1 lg:hidden">
+        <ThemeToggle />
+        <button
+          type="button"
+          class="flex h-10 w-10 items-center justify-center rounded-lg text-text-primary"
+          :aria-label="isOpen ? 'Cerrar menú' : 'Abrir menú'"
+          :aria-expanded="isOpen"
+          @click="isOpen = !isOpen"
+        >
+          <Bars3Icon v-if="!isOpen" class="h-7 w-7" />
+          <XMarkIcon v-else class="h-7 w-7" />
+        </button>
+      </div>
     </div>
+
+    <transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="isOpen"
+        class="fixed inset-0 top-[64px] z-30 bg-black/40 lg:hidden"
+        aria-hidden="true"
+        @click="closeMenu"
+      />
+    </transition>
 
     <transition
       enter-active-class="transition duration-200 ease-out"
@@ -69,13 +113,16 @@ function closeMenu() {
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <nav v-if="isOpen" class="flex flex-col gap-1 border-t border-brand-gray-light bg-white px-4 py-4 lg:hidden">
+      <nav
+        v-if="isOpen"
+        class="relative z-40 flex flex-col gap-1 border-t border-border bg-surface px-4 py-4 shadow-dropdown lg:hidden"
+      >
         <router-link
           v-for="link in navLinks"
           :key="link.to"
           :to="link.to"
-          class="rounded-lg px-3 py-3 text-sm font-medium text-brand-gray-dark hover:bg-brand-gray-light"
-          active-class="text-brand-red bg-brand-red/5"
+          class="rounded-lg px-3 py-3 text-sm font-medium text-text-secondary hover:bg-surface-hover"
+          active-class="text-primary bg-primary-soft"
           @click="closeMenu"
         >
           {{ link.label }}

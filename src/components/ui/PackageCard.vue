@@ -12,20 +12,20 @@ defineProps<{
 
 <template>
   <div
-    class="flex h-full flex-col rounded-2xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    class="flex h-full flex-col rounded-2xl p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     :class="
       highlighted
-        ? 'border-2 border-brand-red bg-brand-black text-white shadow-xl'
-        : 'border border-brand-gray-light bg-white'
+        ? 'border-2 border-primary bg-brand-black text-white shadow-xl'
+        : 'border border-border bg-surface'
     "
   >
     <span
       v-if="highlighted"
-      class="mb-4 inline-block self-start rounded-full bg-brand-red px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white"
+      class="mb-4 inline-block self-start rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white"
     >
       Más popular
     </span>
-    <h3 class="mb-6 text-2xl font-bold" :class="highlighted ? 'text-white' : 'text-brand-black'">
+    <h3 class="mb-6 text-2xl font-bold" :class="highlighted ? 'text-white' : 'text-text-primary'">
       {{ name }}
     </h3>
     <ul class="mb-8 flex-1 space-y-3">
@@ -33,9 +33,9 @@ defineProps<{
         v-for="feature in features"
         :key="feature"
         class="flex items-start gap-2 text-sm"
-        :class="highlighted ? 'text-gray-200' : 'text-brand-gray-dark'"
+        :class="highlighted ? 'text-gray-200' : 'text-text-secondary'"
       >
-        <CheckCircleIcon class="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-red" />
+        <CheckCircleIcon class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
         <span>{{ feature }}</span>
       </li>
     </ul>

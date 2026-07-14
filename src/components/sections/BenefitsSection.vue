@@ -4,7 +4,7 @@ import { benefits } from '@/data/services'
 </script>
 
 <template>
-  <section class="bg-brand-gray-light px-4 py-16 md:px-8 md:py-24">
+  <section class="bg-surface-secondary px-4 py-16 md:px-8 md:py-24">
     <div class="mx-auto max-w-7xl">
       <SectionTitle
         eyebrow="Por qué Manager Global Marketing"
@@ -15,7 +15,7 @@ import { benefits } from '@/data/services'
           v-for="benefit in benefits"
           :key="benefit.text"
           v-reveal
-          class="flex items-start gap-4 rounded-2xl bg-white p-6 shadow-sm"
+          class="flex items-start gap-4 rounded-2xl bg-surface p-6 shadow-card"
         >
           <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red">
             <component :is="benefit.icon" class="h-5 w-5" />

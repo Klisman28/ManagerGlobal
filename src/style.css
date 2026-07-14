@@ -4,11 +4,54 @@
   --font-sans: 'Inter', 'Poppins', system-ui, sans-serif;
   --font-heading: 'Poppins', 'Inter', system-ui, sans-serif;
 
-  --color-brand-red: #ff2e2e;
   --color-brand-black: #1f1f1f;
-  --color-brand-gray-dark: #333333;
-  --color-brand-gray-light: #f5f5f5;
-  --color-brand-white: #ffffff;
+
+  --color-background: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f1f5f9;
+  --color-surface-hover: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-primary: #ff2e2e;
+  --color-primary-hover: #e62626;
+  --color-primary-soft: #ffe1e1;
+  --color-brand: var(--color-primary);
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #2563eb;
+  --color-focus: var(--color-primary);
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06);
+  --shadow-dropdown: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 10px 15px -3px rgb(0 0 0 / 0.08);
+
+  --color-brand-red: var(--color-primary);
+  --color-brand-gray-light: var(--color-surface-secondary);
+  --color-brand-gray-dark: var(--color-text-secondary);
+  --color-brand-white: var(--color-surface);
+}
+
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-background: #0f1115;
+  --color-surface: #171a21;
+  --color-surface-secondary: #1e222b;
+  --color-surface-hover: #252a35;
+  --color-border: #2d3340;
+  --color-border-strong: #3c4453;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-primary: #ff5c5c;
+  --color-primary-hover: #ff7a7a;
+  --color-primary-soft: #4a1414;
 }
 
 html {
@@ -17,8 +60,18 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-brand-black);
-  background-color: var(--color-brand-white);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+svg {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 h1,
@@ -40,6 +93,20 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  svg {
+    transition: none !important;
+  }
+
   .reveal {
     opacity: 1;
     transform: none;

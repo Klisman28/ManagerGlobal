@@ -37,17 +37,17 @@ useSeoMeta({
           v-for="service in marketingServices"
           :key="service.title"
           v-reveal
-          class="flex items-center gap-4 rounded-2xl border border-brand-gray-light bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          class="flex items-center gap-4 rounded-2xl border border-border bg-surface p-6 shadow-card transition hover:-translate-y-1 hover:shadow-lg"
         >
           <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-brand-red/10 text-brand-red">
             <component :is="service.icon" class="h-6 w-6" />
           </div>
-          <p class="font-semibold text-brand-black">{{ service.title }}</p>
+          <p class="font-semibold text-text-primary">{{ service.title }}</p>
         </div>
       </div>
     </section>
 
-    <section class="bg-brand-gray-light px-4 py-16 md:px-8 md:py-24">
+    <section class="bg-surface-secondary px-4 py-16 md:px-8 md:py-24">
       <div class="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Paquetes"
@@ -80,7 +80,7 @@ useSeoMeta({
           v-for="game in advergameTypes"
           :key="game.id"
           v-reveal
-          class="group relative flex flex-col overflow-hidden rounded-3xl border border-brand-gray-light bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
         >
           <!-- Header de color -->
           <div class="flex flex-col items-center bg-brand-black px-8 py-10 text-center text-white">
@@ -120,7 +120,7 @@ useSeoMeta({
       </div>
 
       <!-- Badge de beneficios generales -->
-      <div v-reveal class="mt-14 rounded-3xl bg-brand-gray-light p-8 md:p-12">
+      <div v-reveal class="mt-14 rounded-3xl bg-surface-secondary p-8 md:p-12">
         <div class="grid gap-6 text-center md:grid-cols-3">
           <div>
             <p class="text-4xl font-extrabold text-brand-red">+5 min</p>

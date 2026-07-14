@@ -53,7 +53,7 @@ const lunaFilmsProjects = computed(() =>
       </div>
     </section>
 
-    <section class="bg-brand-gray-light px-4 py-16 md:px-8 md:py-24">
+    <section class="bg-surface-secondary px-4 py-16 md:px-8 md:py-24">
       <div class="mx-auto max-w-7xl">
         <SectionTitle eyebrow="Servicios" title="Servicios audiovisuales" />
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -61,7 +61,7 @@ const lunaFilmsProjects = computed(() =>
             v-for="service in lunaFilmsServices"
             :key="service"
             v-reveal
-            class="rounded-xl bg-white px-5 py-4 text-sm font-semibold text-brand-black shadow-sm"
+            class="rounded-xl bg-surface px-5 py-4 text-sm font-semibold text-text-primary shadow-card"
           >
             {{ service }}
           </div>
@@ -87,7 +87,7 @@ const lunaFilmsProjects = computed(() =>
       </div>
     </section>
 
-    <section v-if="lunaFilmsProjects.length" class="bg-brand-gray-light px-4 py-16 md:px-8 md:py-24">
+    <section v-if="lunaFilmsProjects.length" class="bg-surface-secondary px-4 py-16 md:px-8 md:py-24">
       <div class="mx-auto max-w-7xl">
         <SectionTitle eyebrow="Portafolio" title="Portafolio audiovisual" />
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -19,14 +19,14 @@ withDefaults(
   >
     <span
       v-if="eyebrow"
-      class="mb-3 inline-block rounded-full bg-brand-red/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-brand-red"
+      class="mb-3 inline-block rounded-full bg-surface px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-card"
     >
       {{ eyebrow }}
     </span>
-    <h2 class="text-3xl md:text-4xl font-bold text-brand-black leading-tight">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary leading-tight">
       {{ title }}
     </h2>
-    <p v-if="subtitle" class="mt-4 text-base md:text-lg text-brand-gray-dark">
+    <p v-if="subtitle" class="mt-4 text-base md:text-lg text-text-secondary">
       {{ subtitle }}
     </p>
   </div>

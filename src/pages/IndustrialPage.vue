@@ -33,12 +33,12 @@ useSeoMeta({
           v-for="service in industrialServices"
           :key="service.title"
           v-reveal
-          class="flex items-center gap-4 rounded-2xl border border-brand-gray-light bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          class="flex items-center gap-4 rounded-2xl border border-border bg-surface p-6 shadow-card transition hover:-translate-y-1 hover:shadow-lg"
         >
           <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-brand-red/10 text-brand-red">
             <component :is="service.icon" class="h-6 w-6" />
           </div>
-          <p class="font-semibold text-brand-black">{{ service.title }}</p>
+          <p class="font-semibold text-text-primary">{{ service.title }}</p>
         </div>
       </div>
     </section>

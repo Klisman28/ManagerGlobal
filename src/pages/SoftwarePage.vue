@@ -27,12 +27,12 @@ useSeoMeta({
           v-for="system in softwareSystems"
           :key="system.id"
           v-reveal
-          class="flex flex-col rounded-2xl border border-brand-gray-light bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+          class="flex flex-col rounded-2xl border border-border bg-surface p-8 shadow-card transition hover:-translate-y-1 hover:shadow-xl"
         >
           <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-red/10 text-brand-red">
             <component :is="system.icon" class="h-7 w-7" />
           </div>
-          <h3 class="mb-4 text-xl font-bold text-brand-black">{{ system.title }}</h3>
+          <h3 class="mb-4 text-xl font-bold text-text-primary">{{ system.title }}</h3>
           <ul class="mb-6 flex-1 space-y-2">
             <li
               v-for="feature in system.features"
