@@ -1,0 +1,10 @@
+# Vue Router history routes on Hostinger (Apache/LiteSpeed).
+# Vite copies this file into dist. Keep the route list in sync with src/router/index.ts.
+# Only known pages fall back to index.html; missing assets and unknown URLs stay 404.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(marketing-publicidad-guatemala|software-empresarial|soluciones-industriales|luna-films|portafolio|contacto)/?$ index.html [L]
+</IfModule>
