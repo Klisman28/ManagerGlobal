@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
+import {
+  buildWhatsappLink,
+  WHATSAPP_MESSAGES,
+  WHATSAPP_PHONE_DISPLAY,
+} from '@/data/whatsapp'
+import { navigationLinks } from '@/data/navigation'
 
 const year = new Date().getFullYear()
 
-const quickLinks = [
-  { label: 'Marketing y Publicidad', to: '/marketing-publicidad-guatemala' },
-  { label: 'Software Empresarial', to: '/software-empresarial' },
-  { label: 'Soluciones Industriales', to: '/soluciones-industriales' },
-  { label: 'Luna Films', to: '/luna-films' },
-  { label: 'Portafolio', to: '/portafolio' },
-  { label: 'Contacto', to: '/contacto' },
-]
 </script>
 
 <template>
@@ -39,7 +36,7 @@ const quickLinks = [
       <div>
         <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Enlaces</h3>
         <ul class="space-y-2 text-sm">
-          <li v-for="link in quickLinks" :key="link.to">
+          <li v-for="link in navigationLinks" :key="link.to">
             <router-link :to="link.to" class="text-gray-400 transition hover:text-brand-red">
               {{ link.label }}
             </router-link>
@@ -50,7 +47,7 @@ const quickLinks = [
       <div>
         <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Contacto</h3>
         <ul class="space-y-2 text-sm text-gray-400">
-          <li>📞 +502 1234-5678</li>
+          <li>📞 {{ WHATSAPP_PHONE_DISPLAY }}</li>
           <li>✉️ contacto@managerglobalmarketing.com</li>
           <li>📍 Guatemala</li>
         </ul>

@@ -5,20 +5,11 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 import { useTheme } from '@/composables/useTheme'
 import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
+import { navigationLinks } from '@/data/navigation'
 
 const isOpen = ref(false)
 const { theme } = useTheme()
 const logoSrc = computed(() => (theme.value === 'dark' ? '/logo-dark.svg' : '/logo.svg'))
-
-const navLinks = [
-  { label: 'Inicio', to: '/' },
-  { label: 'Marketing', to: '/marketing-publicidad-guatemala' },
-  { label: 'Software', to: '/software-empresarial' },
-  { label: 'Soluciones Industriales', to: '/soluciones-industriales' },
-  { label: 'Luna Films', to: '/luna-films' },
-  { label: 'Portafolio', to: '/portafolio' },
-  { label: 'Contacto', to: '/contacto' },
-]
 
 function closeMenu() {
   isOpen.value = false
@@ -57,7 +48,7 @@ onBeforeUnmount(() => {
 
       <nav class="hidden items-center gap-6 lg:flex">
         <router-link
-          v-for="link in navLinks"
+          v-for="link in navigationLinks"
           :key="link.to"
           :to="link.to"
           class="text-sm font-medium text-text-secondary transition-colors hover:text-primary"
@@ -118,7 +109,7 @@ onBeforeUnmount(() => {
         class="relative z-40 flex flex-col gap-1 border-t border-border bg-surface px-4 py-4 shadow-dropdown lg:hidden"
       >
         <router-link
-          v-for="link in navLinks"
+          v-for="link in navigationLinks"
           :key="link.to"
           :to="link.to"
           class="rounded-lg px-3 py-3 text-sm font-medium text-text-secondary hover:bg-surface-hover"

@@ -42,8 +42,8 @@ export const homeServiceCards: HomeServiceCard[] = [
     icon: ComputerDesktopIcon,
     title: 'Software Empresarial',
     description:
-      'Sistemas para punto de venta, créditos, gestión de citas, fisioterapia y administración interna de negocios.',
-    buttonLabel: 'Ver software',
+      'Punto de Venta, Sistema de Créditos y Fisioterapia. También desarrollamos software a medida y chatbots.',
+    buttonLabel: 'Ver sistemas',
     to: '/software-empresarial',
   },
   {

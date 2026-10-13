@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import PageHero from '@/components/sections/PageHero.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
+import {
+  buildContactWhatsappMessage,
+  buildWhatsappLink,
+  WHATSAPP_BASE_URL,
+  WHATSAPP_MESSAGES,
+  WHATSAPP_PHONE_DISPLAY,
+} from '@/data/whatsapp'
 import { useSeoMeta } from '@/composables/useSeoMeta'
 
 useSeoMeta({
@@ -35,16 +41,11 @@ const form = reactive({
 
 const submitted = ref(false)
 const isSubmitting = ref(false)
+const contactWhatsappMessage = computed(() => buildContactWhatsappMessage(form))
+const contactWhatsappLink = computed(() => buildWhatsappLink(contactWhatsappMessage.value))
 
 async function handleSubmit() {
   isSubmitting.value = true
-
-  // Preparado para integración futura con un backend FastAPI, por ejemplo:
-  // await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(form),
-  // })
 
   await new Promise((resolve) => setTimeout(resolve, 400))
 
@@ -65,9 +66,13 @@ async function handleSubmit() {
       <div class="grid gap-12 lg:grid-cols-3">
         <form
           v-if="!submitted"
+          :action="WHATSAPP_BASE_URL"
+          method="get"
+          target="_blank"
           class="space-y-5 rounded-2xl border border-border bg-surface p-8 shadow-card lg:col-span-2"
-          @submit.prevent="handleSubmit"
+          @submit="handleSubmit"
         >
+          <input type="hidden" name="text" :value="contactWhatsappMessage" />
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
               <label for="fullName" class="mb-2 block text-sm font-semibold text-text-primary">Nombre completo</label>
@@ -145,8 +150,18 @@ async function handleSubmit() {
         >
           <h3 class="mb-2 text-2xl font-bold text-text-primary">¡Gracias por escribirnos!</h3>
           <p class="text-brand-gray-dark">
-            Hemos recibido tu solicitud. Nuestro equipo se pondrá en contacto contigo muy pronto.
+            Abrimos WhatsApp con tu solicitud preparada. Revisa el mensaje y presiona enviar para
+            compartirlo con nuestro equipo.
           </p>
+          <BaseButton
+            as="a"
+            :href="contactWhatsappLink"
+            target="_blank"
+            rel="noopener"
+            class="mt-6"
+          >
+            Abrir WhatsApp
+          </BaseButton>
         </div>
 
         <div class="space-y-6">
@@ -177,7 +192,7 @@ async function handleSubmit() {
           <div class="rounded-2xl border border-border bg-surface p-6 shadow-card">
             <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-primary">Información</h3>
             <ul class="space-y-2 text-sm text-brand-gray-dark">
-              <li>📞 +502 1234-5678</li>
+              <li>📞 {{ WHATSAPP_PHONE_DISPLAY }}</li>
               <li>✉️ contacto@managerglobalmarketing.com</li>
             </ul>
           </div>

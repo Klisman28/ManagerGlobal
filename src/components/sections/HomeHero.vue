@@ -47,7 +47,7 @@ import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
               <ComputerDesktopIcon class="h-8 w-8 text-brand-red" />
               <div>
                 <p class="font-semibold">Software Empresarial</p>
-                <p class="text-sm text-gray-400">Ventas, créditos, citas y más</p>
+                <p class="text-sm text-gray-400">Punto de venta, créditos y fisioterapia</p>
               </div>
             </div>
             <div class="flex items-center gap-4 rounded-2xl bg-white/5 p-4">

@@ -2,6 +2,8 @@
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 import ServiceCard from '@/components/ui/ServiceCard.vue'
 import { homeServiceCards } from '@/data/services'
+
+const visibleServices = homeServiceCards.filter((card) => card.id !== 'industrial')
 </script>
 
 <template>
@@ -11,8 +13,8 @@ import { homeServiceCards } from '@/data/services'
       title="Soluciones para negocios que quieren crecer"
       subtitle="Integramos marketing, tecnología y producción audiovisual para que tu negocio venda más y opere mejor."
     />
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div v-for="card in homeServiceCards" :key="card.id" v-reveal>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div v-for="card in visibleServices" :key="card.id" v-reveal>
         <ServiceCard
           :icon="card.icon"
           :title="card.title"
