@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { FilmIcon } from '@heroicons/vue/24/outline'
 import PageHero from '@/components/sections/PageHero.vue'
+import LunaFilmsShowcase from '@/components/sections/LunaFilmsShowcase.vue'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 import PackageCard from '@/components/ui/PackageCard.vue'
-import PortfolioCard from '@/components/ui/PortfolioCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import CTASection from '@/components/sections/CTASection.vue'
 import { lunaFilmsServices } from '@/data/services'
 import { marketingPackages } from '@/data/packages'
-import { portfolioProjects } from '@/data/portfolio'
 import { buildWhatsappLink, WHATSAPP_MESSAGES } from '@/data/whatsapp'
 import { useSeoMeta } from '@/composables/useSeoMeta'
 
@@ -17,10 +15,6 @@ useSeoMeta({
   title: 'Luna Films | Producción Audiovisual y Fotografía Comercial',
   description: 'Fotografía comercial, videos, reels, TikToks y producción audiovisual para marcas y negocios.',
 })
-
-const lunaFilmsProjects = computed(() =>
-  portfolioProjects.filter((project) => project.category === 'Luna Films'),
-)
 </script>
 
 <template>
@@ -36,6 +30,8 @@ const lunaFilmsProjects = computed(() =>
         </BaseButton>
       </div>
     </PageHero>
+
+    <LunaFilmsShowcase />
 
     <section class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
       <div class="grid items-center gap-12 md:grid-cols-2">
@@ -84,20 +80,6 @@ const lunaFilmsProjects = computed(() =>
           :highlighted="pkg.highlighted"
           :whatsapp-link="buildWhatsappLink(WHATSAPP_MESSAGES.lunaFilms)"
         />
-      </div>
-    </section>
-
-    <section v-if="lunaFilmsProjects.length" class="bg-surface-secondary px-4 py-16 md:px-8 md:py-24">
-      <div class="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Portafolio" title="Portafolio audiovisual" />
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <PortfolioCard v-for="project in lunaFilmsProjects" :key="project.id" :project="project" />
-        </div>
-        <div class="mt-10 flex justify-center">
-          <BaseButton as="router-link" to="/portafolio" variant="outline">
-            Ver portafolio completo
-          </BaseButton>
-        </div>
       </div>
     </section>
 
