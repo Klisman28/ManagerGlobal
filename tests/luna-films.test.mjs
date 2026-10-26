@@ -7,7 +7,7 @@ const dataSource = await readFile(new URL('../src/data/lunaFilms.ts', import.met
 const { outputText } = ts.transpileModule(dataSource, {
   compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
 })
-const { lunaFilmsImages, lunaFilmsVideo } = await import(
+const { lunaFilmsImages, lunaFilmsVideo, lunaFilmsOffers } = await import(
   `data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`
 )
 const showcase = await readFile(new URL('../src/components/sections/LunaFilmsShowcase.vue', import.meta.url), 'utf8')
@@ -66,5 +66,35 @@ test('media waits for interaction and the image viewer uses an accessible native
 test('Luna Films shows selected work instead of the old placeholder portfolio', () => {
   assert.match(page, /<LunaFilmsShowcase\s*\/>/)
   assert.doesNotMatch(page, /PortfolioCard|portfolioProjects/)
-  assert.match(page, /marketingPackages/)
+})
+
+test('about and audiovisual services come before the showcase, without production packages', () => {
+  const template = page.slice(page.indexOf('<template>'))
+  const about = template.indexOf('aria-labelledby="luna-about-title"')
+  const services = template.indexOf('aria-labelledby="luna-services-title"')
+  const showcase = template.indexOf('<LunaFilmsShowcase />')
+  const contact = template.indexOf('<CTASection')
+  assert.ok(about >= 0 && services > about && showcase > services && contact > showcase)
+  assert.doesNotMatch(page, /PackageCard|marketingPackages|Paquetes de producción audiovisual/)
+})
+
+test('visitors can choose among three clear services with specific WhatsApp drafts', () => {
+  assert.deepEqual(lunaFilmsOffers.map(({ title }) => title), [
+    'Fotografía comercial', 'Video y reels', 'Diseño para redes',
+  ])
+  assert.equal(new Set(lunaFilmsOffers.map(({ action }) => action)).size, 3)
+  for (const offer of lunaFilmsOffers) {
+    assert.ok(offer.message.toLowerCase().includes(offer.title.toLowerCase()))
+    assert.ok(offer.message.includes('Luna Films'))
+    assert.ok(offer.action.startsWith('Quiero'))
+  }
+  assert.match(page, /buildWhatsappLink\(offer\.message\)/)
+  assert.match(page, /rel="noopener noreferrer"/)
+})
+
+test('the minimal introduction links to the examples without duplicate hero or about blocks', () => {
+  assert.match(page, /href="#trabajos-luna-films"/)
+  assert.match(showcase, /id="trabajos-luna-films"/)
+  assert.equal((page.match(/<h1\b/g) ?? []).length, 1)
+  assert.doesNotMatch(page, /PageHero|lunaFilmsServices/)
 })

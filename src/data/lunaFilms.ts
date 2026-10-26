@@ -1,3 +1,30 @@
+export const lunaFilmsOffers = [
+  {
+    id: 'fotografia',
+    title: 'Fotografía comercial',
+    description: 'Muestra tus productos y espacios con imágenes de tu negocio.',
+    examples: 'Productos · Restaurantes · Espacios',
+    action: 'Quiero fotografías',
+    message: 'Hola, me interesa el servicio de fotografía comercial de Luna Films. Quisiera cotizar una sesión para mi negocio.',
+  },
+  {
+    id: 'video',
+    title: 'Video y reels',
+    description: 'Presenta tu negocio, cuenta una historia o muestra lo que haces.',
+    examples: 'Videos comerciales · Reels · Eventos',
+    action: 'Quiero un video',
+    message: 'Hola, me interesa el servicio de video y reels de Luna Films. Quisiera cotizar un video para mi negocio.',
+  },
+  {
+    id: 'diseno',
+    title: 'Diseño para redes',
+    description: 'Comunica tus productos, servicios y promociones con claridad.',
+    examples: 'Publicaciones · Historias · Promociones',
+    action: 'Quiero diseños',
+    message: 'Hola, me interesa el servicio de diseño para redes de Luna Films. Quisiera cotizar diseños para mi negocio.',
+  },
+] as const
+
 export interface LunaFilmsImage {
   id: string
   title: string

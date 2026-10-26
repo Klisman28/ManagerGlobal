@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, ref } from 'vue'
 import { ArrowsPointingOutIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import SectionTitle from '@/components/ui/SectionTitle.vue'
 import { lunaFilmsImages, lunaFilmsVideo, type LunaFilmsImage } from '@/data/lunaFilms'
 
 const viewer = ref<HTMLDialogElement | null>(null)
@@ -31,26 +30,23 @@ onBeforeUnmount(restoreScroll)
 </script>
 
 <template>
-  <section id="trabajos-luna-films" class="scroll-mt-20 px-4 py-16 md:px-8 md:py-24">
+  <section id="trabajos-luna-films" aria-labelledby="luna-work-title" class="scroll-mt-20 border-t border-border bg-surface-secondary px-4 py-12 md:px-8 md:py-16">
     <div class="mx-auto max-w-7xl">
-      <SectionTitle
-        eyebrow="Nuestro trabajo"
-        title="Así se ve lo que hacemos"
-        subtitle="Diseños para redes y producción audiovisual. Una selección de nuestro contenido para marcas y negocios."
-      />
-
-      <div class="mb-7 flex flex-wrap items-end justify-between gap-3">
-        <h3 class="text-xl font-bold text-text-primary">Diseño para redes</h3>
-        <p class="text-sm text-text-secondary">Selecciona una imagen para verla completa.</p>
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Nuestro trabajo</p>
+          <h2 id="luna-work-title" class="text-2xl font-bold tracking-tight text-text-primary md:text-3xl">Diseños para marcas y negocios</h2>
+        </div>
+        <p class="text-sm text-text-secondary">Toca un diseño para ampliarlo.</p>
       </div>
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <button
           v-for="image in lunaFilmsImages"
           :key="image.id"
           type="button"
           :aria-label="`Ampliar diseño de ${image.title}`"
           aria-haspopup="dialog"
-          class="group overflow-hidden rounded-2xl border border-border bg-surface text-left shadow-card transition-shadow hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          class="group overflow-hidden rounded-xl border border-border bg-surface text-left transition-colors hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
           @click="openImage(image)"
         >
           <img
@@ -62,24 +58,19 @@ onBeforeUnmount(restoreScroll)
             decoding="async"
             class="aspect-square w-full object-contain"
           />
-          <span class="flex items-center justify-between gap-3 p-5">
-            <span>
-              <span class="block text-xs font-medium text-text-secondary">{{ image.category }}</span>
-              <span class="mt-1 block font-bold text-text-primary">{{ image.title }}</span>
-            </span>
-            <ArrowsPointingOutIcon class="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+          <span class="flex items-center justify-between gap-2 p-4">
+            <span class="text-sm font-semibold text-text-primary">{{ image.title }}</span>
+            <ArrowsPointingOutIcon class="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
           </span>
         </button>
       </div>
 
-      <div class="mt-14 overflow-hidden rounded-3xl border border-border bg-surface shadow-card md:mt-20">
-        <div class="flex flex-wrap items-end justify-between gap-3 p-6 md:p-8">
-          <div>
-            <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">Producción audiovisual</p>
-            <h3 id="luna-video-title" class="text-2xl font-bold text-text-primary">{{ lunaFilmsVideo.title }}</h3>
-            <p id="luna-video-description" class="mt-2 text-sm text-text-secondary">{{ lunaFilmsVideo.description }}</p>
-          </div>
-          <p class="text-sm text-text-secondary">Reproduce el video para conocer el proyecto.</p>
+      <div class="mt-10 grid items-center gap-6 border-t border-border pt-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12">
+        <div>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Video destacado</p>
+          <h3 id="luna-video-title" class="text-2xl font-bold text-text-primary">{{ lunaFilmsVideo.title }}</h3>
+          <p id="luna-video-description" class="mt-3 text-sm leading-relaxed text-text-secondary">{{ lunaFilmsVideo.description }}</p>
+          <p class="mt-3 text-sm text-text-secondary">Dale play para ver el resultado.</p>
         </div>
         <video
           controls
@@ -88,7 +79,7 @@ onBeforeUnmount(restoreScroll)
           :poster="lunaFilmsVideo.poster"
           aria-labelledby="luna-video-title"
           aria-describedby="luna-video-description"
-          class="aspect-video w-full bg-black"
+          class="aspect-video w-full rounded-xl bg-black"
           width="1280"
           height="720"
         >
@@ -125,7 +116,7 @@ onBeforeUnmount(restoreScroll)
         :alt="selectedImage.alt"
         :width="selectedImage.width"
         :height="selectedImage.height"
-        class="max-h-[calc(94dvh-5rem)] w-full object-contain"
+        class="max-h-[calc(94dvh_-_5rem)] w-full object-contain"
       />
     </template>
   </dialog>

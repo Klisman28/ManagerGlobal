@@ -54,11 +54,10 @@ test('desktop, mobile and footer share exactly the five requested navigation ite
   assert.equal(new Set(navigationLinks.map(({ to }) => to)).size, 5)
 })
 
-test('legacy pages remain routable and Luna Films keeps its own existing package data', async () => {
+test('legacy pages remain routable and Luna Films does not show marketing plans', async () => {
   const router = await readFile(new URL('../src/router/index.ts', import.meta.url), 'utf8')
   assert.ok(router.includes("path: '/soluciones-industriales'"))
   assert.ok(router.includes("path: '/portafolio'"))
   const luna = await readFile(new URL('../src/pages/LunaFilmsPage.vue', import.meta.url), 'utf8')
-  assert.ok(luna.includes("from '@/data/packages'"))
   assert.ok(!luna.includes('marketingPlans'))
 })
